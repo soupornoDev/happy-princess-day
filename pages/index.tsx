@@ -9,11 +9,12 @@ import { Toaster } from '@/lib/toast';
 export default function Home() {
   const [isGiftOpened, setIsGiftOpened] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
-  const [formattedDate, setFormattedDate] = useState('');
+  const [currentDate, setCurrentDate] = useState<string>('');
 
   useEffect(() => {
-    setFormattedDate(
-      new Date().toLocaleDateString('en-US', {
+    const today = new Date();
+    setCurrentDate(
+      today.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
@@ -59,7 +60,7 @@ export default function Home() {
 
         <footer className="px-4 py-8 text-center text-text/60 relative z-50">
           <p className="text-sm">
-            National Princess Day {formattedDate && `— ${formattedDate}`}
+            Happy Princess Day — {currentDate || 'Loading...'}
           </p>
           <p className="text-xs mt-2">Made with 💕 by Souporno Chakraborty</p>
         </footer>
